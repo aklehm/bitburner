@@ -17,12 +17,12 @@ export async function main(ns) {
   // to gain root access. Then use nuke() to gain admin access and
   // run the scripts.
   for (var i = 0; i < servers0Port.length; ++i) {
-    var serv = servers0Port[i][0];
+    var serv = servers0Port[i];
     var mem = ns.getScriptRam(script);
     var serverRam = ns.getServerMaxRam(serv);
     var threads = Math.floor(serverRam / mem);
 
-    await ns.scp(script, serv);
+    ns.scp(script, serv);
     ns.nuke(serv);
     ns.killall(serv);
     ns.exec(script, serv, threads);
@@ -37,14 +37,14 @@ export async function main(ns) {
   // to gain root access. Then use brutessh() and nuke()
   // to gain admin access and run the scripts.
   for (var i = 0; i < servers1Port.length; ++i) {
-    var serv = servers1Port[i][0];
+    var serv = servers1Port[i];
     var mem = ns.getScriptRam(script);
     ns.tprint(mem);
     var serverRam = ns.getServerMaxRam(serv);
     var threads = Math.floor(serverRam / mem);
     ns.tprint(threads);
 
-    await ns.scp(script, serv);
+    ns.scp(script, serv);
     ns.brutessh(serv);
     ns.nuke(serv);
     ns.killall(serv);
@@ -60,11 +60,11 @@ export async function main(ns) {
   // to gain root access. Then use brutessh(), ftpcrack() and nuke()
   // to gain admin access and run the scripts.
   for (var i = 0; i < servers2Port.length; ++i) {
-    var serv = servers2Port[i][0];
+    var serv = servers2Port[i];
     var mem = ns.getScriptRam(script);
     var serverRam = ns.getServerMaxRam(serv);
     var threads = Math.floor(serverRam / mem);
-    await ns.scp(script, serv);
+    ns.scp(script, serv);
     ns.brutessh(serv);
     ns.ftpcrack(serv);
     ns.nuke(serv);
@@ -81,11 +81,11 @@ export async function main(ns) {
   // to gain root access. Then use brutessh(), ftpcrack(), relaysmtp() and nuke()
   // to gain admin access and run the scripts.
   for (var i = 0; i < servers3Port.length; ++i) {
-    var serv = servers3Port[i][0];
+    var serv = servers3Port[i];
     var mem = ns.getScriptRam(script);
     var serverRam = ns.getServerMaxRam(serv);
     var threads = Math.floor(serverRam / mem);
-    await ns.scp(script, serv);
+    ns.scp(script, serv);
     ns.brutessh(serv);
     ns.ftpcrack(serv);
     ns.relaysmtp(serv);
