@@ -7,11 +7,15 @@ export async function main(ns) {
 
   // Array of all servers that only need 1 port opened
   // to gain root access. These have 32 GB of RAM
-  var servers1Port = ["zer0", "max-hardware", "iron-gym"];
+  var servers1Port = ["zer0", "max-hardware", "iron-gym", "neo-net"];
 
   var servers2Port = ["phantasy", "avmnite-02h", "omega-net", "silver-helix", "the-hub"];
 
-  var servers3Port = ["rothman-uni", "catalyst", "I.I.I.I", "netlink", "summit-uni"];
+  var servers3Port = ["rothman-uni", "catalyst", "I.I.I.I", "netlink", "summit-uni", "millenium-fitness", "rho-construction"];
+
+  var servers4Port = ["lexo-corp", "unitalife", "univ-energy", "global-pharm", "alpha-ent", "aevum-police"];
+
+  var servers5Port = ["solaris", "omnia", "zb-institute"];
 
   // Copy our scripts onto each server that requires 0 ports
   // to gain root access. Then use nuke() to gain admin access and
@@ -89,6 +93,53 @@ export async function main(ns) {
     ns.brutessh(serv);
     ns.ftpcrack(serv);
     ns.relaysmtp(serv);
+    ns.nuke(serv);
+    ns.killall(serv);
+    ns.exec(script, serv, threads);
+  }
+
+  // Wait until we acquire the "BruteSSH.exe" program
+  while (!ns.fileExists("HTTPWorm.exe")) {
+    await ns.sleep(60000);
+  }
+
+  // Copy our scripts onto each server that requires 2 port
+  // to gain root access. Then use brutessh(), ftpcrack(), relaysmtp() and nuke()
+  // to gain admin access and run the scripts.
+  for (var i = 0; i < servers4Port.length; ++i) {
+    var serv = servers4Port[i];
+    var mem = ns.getScriptRam(script);
+    var serverRam = ns.getServerMaxRam(serv);
+    var threads = Math.floor(serverRam / mem);
+    ns.scp(script, serv);
+    ns.brutessh(serv);
+    ns.ftpcrack(serv);
+    ns.relaysmtp(serv);
+    ns.httpworm(serv);
+    ns.nuke(serv);
+    ns.killall(serv);
+    ns.exec(script, serv, threads);
+  }
+
+  // Wait until we acquire the "BruteSSH.exe" program
+  while (!ns.fileExists("SQLInject.exe")) {
+    await ns.sleep(60000);
+  }
+
+  // Copy our scripts onto each server that requires 2 port
+  // to gain root access. Then use brutessh(), ftpcrack(), relaysmtp() and nuke()
+  // to gain admin access and run the scripts.
+  for (var i = 0; i < servers5Port.length; ++i) {
+    var serv = servers5Port[i];
+    var mem = ns.getScriptRam(script);
+    var serverRam = ns.getServerMaxRam(serv);
+    var threads = Math.floor(serverRam / mem);
+    ns.scp(script, serv);
+    ns.brutessh(serv);
+    ns.ftpcrack(serv);
+    ns.relaysmtp(serv);
+    ns.httpworm(serv);
+    ns.sqlinject(serv);
     ns.nuke(serv);
     ns.killall(serv);
     ns.exec(script, serv, threads);
