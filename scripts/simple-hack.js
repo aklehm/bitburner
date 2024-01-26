@@ -1,7 +1,14 @@
 export async function main(ns) {
   // Defines the "target server", which is the server
   // that we're going to hack. In this case, it's "n00dles"
-  var target = "harakiri-sushi";
+  //var target = "lexo-corp";
+  // harakiri-sushi
+  //lexo-corp
+
+  var target = "n00dles";
+  if (typeof ns.args[0] !== "undefined") {
+    target = ns.args[0];
+  }
 
   // Defines how much money a server should have before we hack it
   // In this case, it is set to 75% of the server's max money

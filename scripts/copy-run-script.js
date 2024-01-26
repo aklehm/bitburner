@@ -1,6 +1,7 @@
 /** @param {NS} ns */
 export async function main(ns) {
   var script = "simple-hack.js";
+  var hackserver = ns.args[0];
   // Array of all servers that don't need any ports opened
   // to gain root access. These have 16 GB of RAM
   var servers0Port = ["n00dles", "sigma-cosmetics", "joesguns", "nectar-net", "hong-fang-tea", "harakiri-sushi"];
@@ -52,7 +53,11 @@ export async function main(ns) {
     ns.brutessh(serv);
     ns.nuke(serv);
     ns.killall(serv);
-    ns.exec(script, serv, threads);
+    if (typeof hackserver !== "undefined") {
+      ns.exec(script, serv, threads, hackserver);
+    } else {
+      ns.exec(script, serv, threads);
+    }
   }
 
   // Wait until we acquire the "BruteSSH.exe" program
@@ -73,7 +78,11 @@ export async function main(ns) {
     ns.ftpcrack(serv);
     ns.nuke(serv);
     ns.killall(serv);
-    ns.exec(script, serv, threads);
+    if (hackserver != "undefined") {
+      ns.exec(script, serv, threads, hackserver);
+    } else {
+      ns.exec(script, serv, threads);
+    }
   }
 
   // Wait until we acquire the "BruteSSH.exe" program
@@ -95,7 +104,11 @@ export async function main(ns) {
     ns.relaysmtp(serv);
     ns.nuke(serv);
     ns.killall(serv);
-    ns.exec(script, serv, threads);
+    if (typeof hackserver !== "undefined") {
+      ns.exec(script, serv, threads, hackserver);
+    } else {
+      ns.exec(script, serv, threads);
+    }
   }
 
   // Wait until we acquire the "BruteSSH.exe" program
@@ -118,7 +131,11 @@ export async function main(ns) {
     ns.httpworm(serv);
     ns.nuke(serv);
     ns.killall(serv);
-    ns.exec(script, serv, threads);
+    if (typeof hackserver !== "undefined") {
+      ns.exec(script, serv, threads, hackserver);
+    } else {
+      ns.exec(script, serv, threads);
+    }
   }
 
   // Wait until we acquire the "BruteSSH.exe" program
@@ -142,6 +159,10 @@ export async function main(ns) {
     ns.sqlinject(serv);
     ns.nuke(serv);
     ns.killall(serv);
-    ns.exec(script, serv, threads);
+    if (typeof hackserver !== "undefined") {
+      ns.exec(script, serv, threads, hackserver);
+    } else {
+      ns.exec(script, serv, threads);
+    }
   }
 }
